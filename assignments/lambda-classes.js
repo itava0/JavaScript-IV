@@ -17,30 +17,41 @@ class Instructor extends Person {
     this.favLanguage = InstructorAttr.favLanguage
     this.catchPhrase = InstructorAttr.catchPhrase
    }
-   demo() {
-     return `Today we are learning about ${this.favLanguage}`
+   demo(subject) {
+     return `Today we are learning about ${subject}`
    }
-   grade() {
-     return `${this.name} receives a perfect score on ${this.favLanguage}`
+   grade(subject) {
+    //  let studentGrade = Math.floor(Math.random() * 100) + 1;
+     return `${this.name} receives a perfect score on ${subject}`
    }
   }
 
-  class Student extends Instructor {
+  class Student extends Person {
     constructor(StudentAttr){
       super(StudentAttr);
       this.previousBackground = StudentAttr.previousBackground
       this.className = StudentAttr.className
       this.favSubjects = StudentAttr.favSubjects
+      this.grade = StudentAttr.grade
     }
     listsSubjects() {
-      return this.favSubjects;
+      return this.favSubjects.forEach(function(currentValue){
+        console.log(currentValue);
+      });
     }
-    PRAssignment() {
-      return `${this.name} has submitted a PR for ${this.favLanguage}`;
+    PRAssignment(subject) {
+      return `${this.name} has submitted a PR for ${subject}`;
     }
-    sprintChallenge() {
-      return `${this.name} has begun sprint challenge on ${this.favLanguage}`;
+    sprintChallenge(subject) {
+      return `${this.name} has begun sprint challenge on ${subject}`;
     }
+    // graduate() {
+    //   if( this.studentGrade >= 70) {
+    //     return `Congratulations, you just Graduated from Lambda School.`;
+    //   } else {
+    //     return studentGrade;
+    //   }
+    // }
   }
 
   class PM extends Instructor {
@@ -75,10 +86,9 @@ class Instructor extends Person {
 
   const ivan = new Student({
     name: 'Ivan',
-    previousBackground: 'car salesman',
-    className: 'CS132',
-    favSubjects: ['Html', 'CSS', 'JavaScript'],
-    favLanguage: 'JavaScript'
+    previousBackground: 'insurance agent',
+    className: 'WEB23',
+    favSubjects: ['Html', 'CSS', 'JavaScript']
   });
 
   const mike = new PM({
@@ -90,17 +100,12 @@ class Instructor extends Person {
     favLanguage: 'JavaScript'
   });
 
+ivan.listsSubjects();
 console.log(carlos.speak());
-console.log(igor.demo());
-console.log(igor.grade());
-console.log(ivan.listsSubjects());
-console.log(ivan.PRAssignment());
-console.log(ivan.sprintChallenge());
+console.log(igor.demo('Python'));
+console.log(igor.grade('JavaScript'));
+// console.log(ivan.graduate())
+console.log(ivan.PRAssignment('JavaScript'));
+console.log(ivan.sprintChallenge('Python'));
 console.log(mike.standUp('Avengers'));
 console.log(mike.debugsCode('Ivan'));
-
-// console.log(daughter.work());
-// console.log(daughter.study());
-// console.log(grandson.work());
-// console.log(grandson.study());
-// console.log(grandson.play());
